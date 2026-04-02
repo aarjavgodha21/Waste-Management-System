@@ -104,18 +104,8 @@ class shop(TemplateView):
         context['prod']=prod
         return context
     
-class view_product(TemplateView):
-    template_name='product-guest.html'
-    def get_context_data(self,**kwargs):
-        context=super(view_product,self).get_context_data(**kwargs)
-        pid=self.request.GET['id']
-        pd=products.objects.get(id=pid)
-        uid=self.request.session.get('id')
-        #print("UserId :",uid)
-        user=user_Registration.objects.get(user_id=uid)                                                                        
-        context['user']=user
-        context['pd']=pd
-        return context
+
+
     
 def check_pincode_view(request):
     if request.method == 'GET':

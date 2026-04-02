@@ -15,30 +15,77 @@
         <div class="row no-gutters align-items-center pt-60px">
           <div class="col-5 d-none d-sm-block">
             <div class="hero-banner__img">
-              <img class="img-fluid" src="{% static 'img/Home.jpg' %}" alt="">
+              <img class="img-fluid" src="{% static 'img/Home.jpg' %}" alt="E-Waste Recycling">
             </div>
           </div>
           <div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
             <div class="hero-banner__content">
-              <h4>Transforming Waste, Preserving the Future</h4>
-              <p style="text-align:justify">Waste Management is an essential process that involves the collection, transportation, recycling, 
-                and disposal of waste materials to promote environmental sustainability and safeguard the planet for future generations.
-                 By efficiently managing waste, we contribute to a cleaner and healthier world, ensuring that valuable resources are not wasted but are given new life through recycling and responsible disposal methods. Together, we can make a significant impact on reducing pollution, conserving natural resources, and creating a more sustainable future for all. Let's join hands and make waste management a priority to protect our beautiful planet</p>
-              <a class="button button--active mt-3 mt-xl-4" href="#">Read More</a>
+              <h4>Recycle E-Waste,<br>Earn Rewards</h4>
+              <p>Join India's smartest e-waste management platform. Schedule free doorstep pickups for old electronics, track your environmental impact, and redeem reward points for sustainable products — all from one place.</p>
+              <a class="button button--active mt-3 mt-xl-4" href="/UserRegister">Get Started Free</a>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!--================ Hero banner start =================-->
+    <!--================ Hero banner end =================-->
 
+    <!--================ Stats Bar =================-->
+    <div class="container">
+      <div class="ew-stats-bar" style="margin-top: -40px; position: relative; z-index: 2;">
+        <div class="ew-stat-card">
+          <div class="ew-stat-card__number">50M+</div>
+          <div class="ew-stat-card__label">Tonnes E-Waste/Year</div>
+        </div>
+        <div class="ew-stat-card">
+          <div class="ew-stat-card__number">80%</div>
+          <div class="ew-stat-card__label">Ends in Landfills</div>
+        </div>
+        <div class="ew-stat-card">
+          <div class="ew-stat-card__number">₹100B</div>
+          <div class="ew-stat-card__label">Lost Material Value</div>
+        </div>
+      </div>
+    </div>
 
-    <!-- ================ Best Selling item  carousel ================= --> 
+    <!--================ How It Works =================-->
+    <section class="ew-how-it-works">
+      <div class="container">
+        <div class="ew-section-title">
+          <h2>How It Works</h2>
+          <p>Four simple steps to responsibly recycle your e-waste</p>
+        </div>
+        <div class="ew-steps">
+          <div class="ew-step">
+            <div class="ew-step__icon">📋</div>
+            <div class="ew-step__title">1. Register</div>
+            <div class="ew-step__desc">Sign up and verify your account with your service area pincode</div>
+          </div>
+          <div class="ew-step">
+            <div class="ew-step__icon">🚛</div>
+            <div class="ew-step__title">2. Schedule Pickup</div>
+            <div class="ew-step__desc">Request a free doorstep pickup for your old electronics and e-waste</div>
+          </div>
+          <div class="ew-step">
+            <div class="ew-step__icon">♻️</div>
+            <div class="ew-step__title">3. We Recycle</div>
+            <div class="ew-step__desc">Our certified collectors weigh, categorize, and responsibly recycle your items</div>
+          </div>
+          <div class="ew-step">
+            <div class="ew-step__icon">🎁</div>
+            <div class="ew-step__title">4. Earn Rewards</div>
+            <div class="ew-step__desc">Get reward points based on weight and category — redeem them in our shop</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================ Featured Products ================= --> 
     <section class="section-margin calc-60px">
       <div class="container">
         <div class="section-intro pb-60px">
-          <p>Popular Item in the market</p>
-          <h2>Best <span class="section-intro__style">Sellers</span></h2>
+          <p>Redeem your recycling points</p>
+          <h2>Reward <span class="section-intro__style">Products</span></h2>
         </div>
         
         <div class="owl-carousel owl-theme" id="bestSellerCarousel">
@@ -46,16 +93,19 @@
           <div class="card text-center card-product">
             
             <div class="card-product__img">
-              <img class="img-fluid-show" src="media/{{i.image}}" alt="">
+              {% if i.image %}
+              <img class="img-fluid-show" src="/media/{{i.image}}" alt="{{ i.name }}">
+              {% else %}
+              <div class="ew-product-placeholder">🔌</div>
+              {% endif %}
               <ul class="card-product__imgOverlay">
                 <li><button><i class="ti-search"></i></button></li>
                 <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
               </ul>
             </div>
             <div class="card-body">
-              <p>Accessories</p>
-              <h4 class="card-product__title"><a href="single-product.html">{{i.name}}</a></h4>
+              <p>E-Waste Reward</p>
+              <h4 class="card-product__title"><a href="/Product?id={{ i.id }}">{{i.name}}</a></h4>
               <p class="card-product__price">₹{{i.rate}}</p>
             </div>
             
@@ -66,7 +116,7 @@
         
       </div>
     </section>
-    <!-- ================ Best Selling item  carousel end ================= --> 
+    <!-- ================ Featured Products end ================= --> 
     
   </main>
 

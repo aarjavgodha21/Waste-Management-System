@@ -2,92 +2,163 @@
 
 ## Overview
 
-The Waste Management System is a comprehensive solution aimed at transforming waste collection, processing, and recycling practices to achieve enhanced efficiency and environmental sustainability. This system is developed using Python and Django. It addresses the challenges of the existing waste management system, which include inadequate record-keeping, limited user incentives, and a lack of accountability for waste collectors. The proposed system integrates cutting-edge technologies and user-centric features to optimize waste management and foster active user participation.
+This project is a Django + MySQL web application for e-waste and recyclable waste collection management.
 
-## Objectives
+It supports three roles:
 
-The main objectives of the proposed Waste Management System are as follows:
+- User: request pickup, earn points, purchase/redeem products, track order updates, and raise complaints.
+- Collector: verify users, manage assigned pickup requests, and record collected waste.
+- Admin: manage products, categories, collectors, locations, orders, complaints, and reports.
 
-1. **Centralized Database**: Establish a centralized database for real-time tracking of waste collection activities, types of waste, and quantities collected.
+## Tech Stack
 
-2. **Accountability for Collectors**: Enhance accountability by implementing performance metrics for waste collectors.
+- Python 3.12
+- Django 5.2
+- MySQL 8.4
+- mysqlclient
 
-3. **User Engagement**: Engage users actively through a rewards program that incentivizes waste contributors to participate in recycling efforts.
+## Prerequisites (macOS)
 
-4. **Data-Driven Planning**: Improve planning for recycling and waste processing facilities by analyzing data on waste types and quantities collected.
+Install these tools first:
 
-## Key Features
+```bash
+brew install python@3.12 mysql@8.4 pkg-config
+brew services start mysql@8.4
+```
 
-The key features of the proposed Waste Management System include:
+## Database Setup
 
-1. **User Registration and Types**: Different functionalities for customers, waste collectors, and administrators.
+Create the database once:
 
-2. **Rewards Program**: Provides rewards to users based on their recycling efforts, offering points that can be redeemed for discounts or eco-friendly products.
+```bash
+mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS db_wastemanagement CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+```
 
-3. **Facility Information**: Maintains crucial details about facility locations, capacities, and accepted waste types.
+## Environment Variables
 
-4. **Collector Performance Evaluation**: Evaluates waste collector performance based on successful pickups, average collection time, and user ratings.
+Project settings load values from `waste_management/.env`.
 
-5. **User Feedback**: Encourages users to provide feedback and ratings, contributing to improved service quality and overall user satisfaction.
+1. Copy example file:
 
-## Advantages
+```bash
+cp waste_management/.env.example waste_management/.env
+```
 
-The proposed Waste Management System offers several advantages, including:
+2. Edit `waste_management/.env` and set your MySQL password:
 
-- Streamlined Record-Keeping: Through the centralized database, the system simplifies record-keeping.
+```env
+DB_NAME=db_wastemanagement
+DB_USER=root
+DB_PASSWORD=your_mysql_password
+DB_HOST=localhost
+DB_PORT=3306
+```
 
-- Increased User Engagement: Incentives and rewards encourage active user participation in recycling efforts.
+`waste_management/.env` is ignored by Git, so secrets are not pushed.
 
-- Improved Collection Efficiency: The system focuses on waste collector performance, leading to more efficient waste collection.
+## Run The Project (One Command)
 
-## Installation
+From project root:
 
-To run this project locally, follow these steps:
+```bash
+./run_project.command
+```
 
-1. Clone this repository to your local machine.
+This launcher will:
 
-   ```
-   git clone <repository-url>
-   ```
+- create and activate `.venv` if missing,
+- install dependencies (if missing),
+- start MySQL service (best effort),
+- run migrations,
+- start Django development server.
 
-2. Create a virtual environment and activate it.
+Open:
 
-   ```
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
+`http://127.0.0.1:8000/`
 
-3. Install the project dependencies.
+## Manual Run (Alternative)
 
-   ```
-   pip install -r requirements.txt
-   ```
+If you prefer running step-by-step:
 
-4. Set up the Django database and run migrations.
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip setuptools wheel
+python -m pip install -r requirements.txt
+cd waste_management
+python manage.py migrate
+python manage.py runserver
+```
 
-   ```
-   python manage.py makemigrations
-   python manage.py migrate
-   ```
+## Main Routes
 
-5. Create a superuser account to access the admin panel.
+- Home: `/`
+- Login: `/login`
+- Register: `/UserRegister`
+- Admin module: `/admin/`
+- User module: `/user/`
+- Collector module: `/collector/`
 
-   ```
-   python manage.py createsuperuser
-   ```
+## Example Workflows
 
-6. Start the development server.
+### Example 1: User Pickup And Rewards
 
-   ```
-   python manage.py runserver
-   ```
+1. Open `/UserRegister` and create a user account.
+2. Login from `/login`.
+3. Open `/user/PickupRequest` and submit a pickup request.
+4. Login as collector and open `/collector/PickupRequest`.
+5. Record collection from `/collector/Collection`.
+6. Check user points from `/user/PointHistory`.
 
-7. Access the admin panel at `http://localhost:8000/admin/` and use your superuser credentials to log in.
+Expected result: pickup status is updated and reward points increase for the user.
 
-## Usage
+### Example 2: Product Purchase Flow
 
-Once the project is set up and the server is running, users can access the Waste Management System through the web interface. Different user types (customers, waste collectors, and administrators) will have access to their respective functionalities.
+1. Login as admin and add products from `/admin/addproduct`.
+2. Login as user and browse `/user/Shop`.
+3. Open a product from `/user/Product`.
+4. Complete order from `/user/Checkout`.
+5. Track order from `/user/OrderHistory` and `/user/OrderUpdates`.
+
+Expected result: order appears in history with status updates.
+
+### Example 3: Complaint Tracking
+
+1. Login as user and submit complaint from `/user/ComplaintRegister`.
+2. Login as admin and open `/admin/ViewComplaints`.
+3. Mark complaint solved from `/admin/ComplaintSolved`.
+4. Login as user and verify status at `/user/TrackComplaints`.
+
+Expected result: complaint status changes from pending to solved.
+
+## Useful Verification Commands
+
+Run from project root:
+
+```bash
+# Check database tables using values from waste_management/.env
+DB_USER=$(grep '^DB_USER=' waste_management/.env | cut -d= -f2-)
+DB_NAME=$(grep '^DB_NAME=' waste_management/.env | cut -d= -f2-)
+DB_PASS=$(grep '^DB_PASSWORD=' waste_management/.env | cut -d= -f2-)
+mysql -u "$DB_USER" -p"$DB_PASS" -D "$DB_NAME" -e "SHOW TABLES;"
+
+# Validate Django setup
+source .venv/bin/activate
+cd waste_management
+python manage.py check
+python manage.py migrate
+```
+
+## Troubleshooting
+
+- `Access denied for user 'root'@'localhost'`:
+  - Verify `DB_PASSWORD` in `waste_management/.env`.
+  - Test MySQL login directly: `mysql -u root -p`.
+- `mysqlclient` build errors:
+  - Ensure `pkg-config` and MySQL are installed via Homebrew.
+- MySQL service not running:
+  - Run `brew services list` and `brew services start mysql@8.4`.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the MIT License.

@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-from django.db import models
-from django.contrib.auth.models import User
 # Create your models here.
 #creating tables in django
 class user_Registration(models.Model):
@@ -15,9 +13,15 @@ class user_Registration(models.Model):
     email=models.CharField(null=True,max_length=100)
     point=models.IntegerField(default=0)
 
+    def __str__(self):
+        return f"{self.name} ({self.email})"
+
 class userType(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     type=models.CharField(null=True,max_length=100)
+
+    def __str__(self):
+        return f"{self.user.username} — {self.type}"
 
 class collector_Registration(models.Model):
     mobile=models.CharField(null=True,max_length=100)
@@ -26,6 +30,9 @@ class collector_Registration(models.Model):
     name=models.CharField(null=True,max_length=100)
     email=models.CharField(null=True,max_length=100)
     collector_id=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+
+    def __str__(self):
+        return f"Collector: {self.name}"
     
 class products(models.Model):
     name=models.CharField(max_length=100,null=True)
@@ -34,6 +41,9 @@ class products(models.Model):
     desc=models.CharField(max_length=200,null=True)
     image=models.ImageField(null=True,upload_to='images')
     status=models.IntegerField(null=False)
+
+    def __str__(self):
+        return self.name or "Unnamed Product"
     
 class stock_his(models.Model):
     product=models.ForeignKey(products,on_delete=models.CASCADE)
@@ -43,12 +53,18 @@ class category(models.Model):
     name=models.CharField(max_length=100)
     point=models.IntegerField(null=True)
 
+    def __str__(self):
+        return self.name
+
 class waste_pickup(models.Model):
     userid=models.ForeignKey(user_Registration,on_delete=models.CASCADE,null=True)
     collector=models.ForeignKey(collector_Registration,on_delete=models.CASCADE,null=True)
     status=models.CharField(max_length=100,default='requested')
     rdate=models.DateField(default=timezone.now)
     pdate=models.DateField(null=True)
+
+    def __str__(self):
+        return f"Pickup #{self.id} — {self.status}"
 
 
 class CollectionHistory(models.Model):
@@ -88,3 +104,6 @@ class Comaplaints(models.Model):
 
 class locations(models.Model):
     pincode=models.CharField(max_length=10,null=True)
+
+    def __str__(self):
+        return f"Location: {self.pincode}"

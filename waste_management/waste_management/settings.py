@@ -15,6 +15,18 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Load local environment variables from BASE_DIR/.env for development.
+ENV_FILE = BASE_DIR / '.env'
+if ENV_FILE.exists():
+    for line in ENV_FILE.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith('#') or '=' not in line:
+            continue
+        key, value = line.split('=', 1)
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        os.environ.setdefault(key, value)
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -54,7 +66,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
 # Optionally, you can specify the session storage class
 # If not specified, Django uses the default storage class based on the session engine
-SESSION_COOKIE_SECURE = True  # Set to True for HTTPS connections
+SESSION_COOKIE_SECURE = False  # Set to True for HTTPS connections
 SESSION_COOKIE_HTTPONLY = True  # Set to True to prevent JavaScript access to cookies
 SESSION_SAVE_EVERY_REQUEST = False  # Set to True if you want to save the session on every request
 ROOT_URLCONF = 'waste_management.urls'
@@ -84,10 +96,11 @@ WSGI_APPLICATION = 'waste_management.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_wastemanagement',
-        'USER':'root',
-        'PASSWORD':'Sanskriti@1102',
-        'HOST':'localhost',
+        'NAME': os.getenv('DB_NAME', 'db_wastemanagement'),
+        'USER': os.getenv('DB_USER', 'root'),
+        'PASSWORD': os.getenv('DB_PASSWORD', ''),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'PORT': os.getenv('DB_PORT', '3306'),
     }
 }
 
@@ -128,7 +141,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS =[os.path.join(BASE_DIR,'static')]
-STATIC_ROOT=os.path.join(BASE_DIR,'')
+STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 

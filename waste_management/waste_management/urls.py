@@ -19,6 +19,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from waste.views import indexview,login_view,userRegistration
+from django.contrib.auth.views import LogoutView
 from waste import admin_urls,user_urls,collector_urls
 from waste.admin_views import product_list
 from waste.views import shop,view_product,CheckPincodeView,Check
@@ -35,9 +36,9 @@ urlpatterns = [
     path('viewproducts',product_list.as_view()),
     path('Product',view_product.as_view()),
     path('check_pincode/', CheckPincodeView.as_view(), name='check_pincode'),
-]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('logout', LogoutView.as_view(next_page='/login'), name='logout'),
+]
 
-if settings.DEBUG :
-    urlpatterns+=static(settings.STATIC_URL,document_root=settings.STATIC_URL)
-    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_URL)
-    urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

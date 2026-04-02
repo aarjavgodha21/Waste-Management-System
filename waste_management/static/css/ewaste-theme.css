@@ -1,0 +1,916 @@
+/* =====================================================
+   eWaste Management System — Modern Theme Override
+   ===================================================== */
+
+/* ---------- Google Fonts ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ---------- CSS Variables ---------- */
+:root {
+  --ew-primary:    #0d9488;
+  --ew-primary-dark: #0f766e;
+  --ew-accent:     #059669;
+  --ew-accent-light:#10b981;
+  --ew-dark:       #0f172a;
+  --ew-dark-2:     #1e293b;
+  --ew-gray:       #64748b;
+  --ew-gray-light: #f1f5f9;
+  --ew-white:      #ffffff;
+  --ew-danger:     #ef4444;
+  --ew-warning:    #f59e0b;
+  --ew-info:       #3b82f6;
+  --ew-success:    #22c55e;
+  --ew-gradient:   linear-gradient(135deg, #0d9488 0%, #059669 100%);
+  --ew-gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --ew-shadow:     0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1);
+  --ew-shadow-lg:  0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.1);
+  --ew-shadow-xl:  0 20px 25px -5px rgba(0,0,0,.1), 0 8px 10px -6px rgba(0,0,0,.1);
+  --ew-radius:     12px;
+  --ew-radius-lg:  20px;
+  --ew-transition: all .3s cubic-bezier(.4,0,.2,1);
+}
+
+/* ---------- Global Reset ---------- */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  color: var(--ew-dark);
+  background: var(--ew-gray-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- Navbar ---------- */
+.header_area .main_menu .navbar {
+  background: rgba(255,255,255,.92) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(13,148,136,.12);
+  padding: 14px 0;
+  transition: var(--ew-transition);
+}
+
+.header_area .main_menu .navbar .nav-link {
+  font-weight: 500 !important;
+  color: var(--ew-dark) !important;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  transition: var(--ew-transition);
+  position: relative;
+}
+
+.header_area .main_menu .navbar .nav-link:hover,
+.header_area .main_menu .navbar .nav-item.active .nav-link {
+  color: var(--ew-primary) !important;
+}
+
+.header_area .main_menu .navbar .nav-item.active .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background: var(--ew-gradient);
+  border-radius: 2px;
+}
+
+/* ---------- Logo ---------- */
+.ew-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none !important;
+}
+
+.ew-logo__icon {
+  width: 40px;
+  height: 40px;
+  background: var(--ew-gradient);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(13,148,136,.3);
+}
+
+.ew-logo__text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--ew-dark);
+  letter-spacing: -0.02em;
+}
+
+.ew-logo__text span {
+  color: var(--ew-primary);
+}
+
+/* ---------- Buttons ---------- */
+.button, .button--active, .button-login,
+.btn-ew-primary {
+  background: var(--ew-gradient) !important;
+  color: var(--ew-white) !important;
+  border: none !important;
+  padding: 12px 32px !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 0.02em;
+  transition: var(--ew-transition) !important;
+  box-shadow: 0 4px 14px rgba(13,148,136,.25);
+  text-transform: none !important;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+}
+
+.button:hover, .button--active:hover, .button-login:hover,
+.btn-ew-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(13,148,136,.35) !important;
+  filter: brightness(1.05);
+}
+
+.btn-ew-outline {
+  background: transparent !important;
+  color: var(--ew-primary) !important;
+  border: 2px solid var(--ew-primary) !important;
+  padding: 10px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: var(--ew-transition);
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-ew-outline:hover {
+  background: var(--ew-gradient) !important;
+  color: var(--ew-white) !important;
+  border-color: transparent !important;
+  transform: translateY(-2px);
+}
+
+/* ---------- Hero Banner ---------- */
+.hero-banner {
+  background: linear-gradient(135deg, #e0f7f5 0%, #d1fae5 50%, #ecfdf5 100%) !important;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  padding: 60px 0 !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(13,148,136,.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-banner__content h4 {
+  font-size: 2.6rem !important;
+  font-weight: 800 !important;
+  color: var(--ew-dark) !important;
+  line-height: 1.2 !important;
+  margin-bottom: 16px !important;
+  letter-spacing: -0.03em;
+}
+
+.hero-banner__content p {
+  font-size: 1.05rem !important;
+  color: var(--ew-gray) !important;
+  line-height: 1.7 !important;
+  max-width: 520px;
+}
+
+.hero-banner__img img {
+  border-radius: var(--ew-radius-lg);
+  box-shadow: var(--ew-shadow-xl);
+  transition: var(--ew-transition);
+}
+
+.hero-banner__img img:hover {
+  transform: scale(1.02);
+}
+
+/* ---------- Stats Bar ---------- */
+.ew-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  max-width: 900px;
+  margin: 40px auto 0;
+  padding: 0 20px;
+}
+
+.ew-stat-card {
+  background: white;
+  border-radius: var(--ew-radius);
+  padding: 24px;
+  text-align: center;
+  box-shadow: var(--ew-shadow);
+  transition: var(--ew-transition);
+}
+
+.ew-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ew-shadow-lg);
+}
+
+.ew-stat-card__number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--ew-primary);
+  margin-bottom: 4px;
+}
+
+.ew-stat-card__label {
+  font-size: 0.85rem;
+  color: var(--ew-gray);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- How It Works ---------- */
+.ew-how-it-works {
+  padding: 80px 0;
+  background: white;
+}
+
+.ew-section-title {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.ew-section-title h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--ew-dark);
+  margin-bottom: 12px;
+  position: relative;
+  display: inline-block;
+}
+
+.ew-section-title h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--ew-gradient);
+  border-radius: 2px;
+  margin: 12px auto 0;
+}
+
+.ew-section-title p {
+  font-size: 1.05rem;
+  color: var(--ew-gray);
+}
+
+.ew-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.ew-step {
+  text-align: center;
+  padding: 36px 24px;
+  border-radius: var(--ew-radius-lg);
+  background: var(--ew-gray-light);
+  transition: var(--ew-transition);
+  position: relative;
+}
+
+.ew-step:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--ew-shadow-lg);
+  background: white;
+}
+
+.ew-step__icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--ew-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: white;
+  margin: 0 auto 20px;
+  box-shadow: 0 6px 20px rgba(13,148,136,.25);
+}
+
+.ew-step__title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ew-dark);
+  margin-bottom: 8px;
+}
+
+.ew-step__desc {
+  font-size: 0.9rem;
+  color: var(--ew-gray);
+  line-height: 1.6;
+}
+
+/* ---------- Product Cards ---------- */
+.card-product {
+  border: none !important;
+  border-radius: var(--ew-radius) !important;
+  overflow: hidden;
+  transition: var(--ew-transition) !important;
+  box-shadow: var(--ew-shadow) !important;
+  background: white !important;
+}
+
+.card-product:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: var(--ew-shadow-xl) !important;
+}
+
+.card-product__img {
+  background: var(--ew-gray-light) !important;
+  border-radius: var(--ew-radius) var(--ew-radius) 0 0 !important;
+  overflow: hidden;
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-product .card-body {
+  padding: 20px !important;
+}
+
+.card-product__title a {
+  font-weight: 600 !important;
+  color: var(--ew-dark) !important;
+  font-size: 1rem !important;
+  text-decoration: none !important;
+  transition: var(--ew-transition);
+}
+
+.card-product__title a:hover {
+  color: var(--ew-primary) !important;
+}
+
+.card-product__price, .card-product .card-body p {
+  color: var(--ew-primary) !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+  margin-top: 8px;
+}
+
+.card-product .card-body p:first-child {
+  color: var(--ew-gray) !important;
+  font-weight: 500 !important;
+  font-size: 0.8rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Product image placeholder */
+.ew-product-placeholder {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #e0f7f5 0%, #d1fae5 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: var(--ew-primary);
+}
+
+/* ---------- Section Styling ---------- */
+.section-intro h2 {
+  font-size: 2rem !important;
+  font-weight: 800 !important;
+  color: var(--ew-dark) !important;
+}
+
+.section-intro p {
+  color: var(--ew-gray) !important;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.85rem !important;
+}
+
+.section-intro__style {
+  color: var(--ew-primary) !important;
+}
+
+/* ---------- Login / Register ---------- */
+.blog-banner-area {
+  background: var(--ew-gradient) !important;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+}
+
+.blog-banner-area h1 {
+  font-weight: 800 !important;
+  color: white !important;
+  font-size: 2.4rem !important;
+}
+
+.blog-banner .breadcrumb-item a,
+.blog-banner .breadcrumb-item.active {
+  color: rgba(255,255,255,.8) !important;
+}
+
+.login_box_img {
+  background: var(--ew-gradient) !important;
+  border-radius: var(--ew-radius-lg) !important;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 380px;
+}
+
+.login_box_img h4 {
+  color: white !important;
+  font-weight: 700 !important;
+  font-size: 1.5rem !important;
+}
+
+.login_box_img .hover {
+  text-align: center;
+  padding: 40px;
+}
+
+.login_box_img .button,
+.login_box_img .button-account {
+  background: white !important;
+  color: var(--ew-primary) !important;
+  font-weight: 600 !important;
+  border-radius: 10px !important;
+  padding: 12px 32px !important;
+  margin-top: 20px;
+  display: inline-block;
+  box-shadow: 0 4px 14px rgba(0,0,0,.1);
+}
+
+.login_box_img .button:hover,
+.login_box_img .button-account:hover {
+  background: var(--ew-dark) !important;
+  color: white !important;
+  transform: translateY(-2px);
+}
+
+.login_form_inner, .register_form_inner {
+  padding: 50px 40px !important;
+  background: white;
+  border-radius: var(--ew-radius-lg) !important;
+  box-shadow: var(--ew-shadow-lg);
+}
+
+.login_form_inner h3 {
+  font-weight: 700 !important;
+  color: var(--ew-dark) !important;
+  font-size: 1.6rem !important;
+  margin-bottom: 30px !important;
+  text-transform: none !important;
+}
+
+.login_form .form-control {
+  border: 2px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  padding: 14px 18px !important;
+  font-size: 0.95rem;
+  transition: var(--ew-transition);
+  background: var(--ew-gray-light);
+}
+
+.login_form .form-control:focus {
+  border-color: var(--ew-primary) !important;
+  box-shadow: 0 0 0 4px rgba(13,148,136,.1) !important;
+  background: white;
+}
+
+/* ---------- User Dashboard ---------- */
+.ew-dashboard-hero {
+  background: linear-gradient(135deg, #e0f7f5 0%, #d1fae5 50%, #ecfdf5 100%);
+  padding: 50px 0;
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+}
+
+.ew-dashboard-hero h4 {
+  font-size: 2.2rem !important;
+  font-weight: 800 !important;
+  color: var(--ew-dark) !important;
+}
+
+.ew-points-card {
+  background: white;
+  border-radius: var(--ew-radius-lg);
+  padding: 30px 40px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: var(--ew-shadow-lg);
+  margin-top: 24px;
+  border: 2px solid rgba(13,148,136,.1);
+}
+
+.ew-points-card__number {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--ew-primary);
+  line-height: 1;
+}
+
+.ew-points-card__label {
+  font-size: 0.85rem;
+  color: var(--ew-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.ew-points-card__icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+/* Quick Actions */
+.ew-quick-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.ew-action-card {
+  background: white;
+  border-radius: var(--ew-radius);
+  padding: 24px;
+  text-align: center;
+  text-decoration: none !important;
+  color: var(--ew-dark) !important;
+  box-shadow: var(--ew-shadow);
+  transition: var(--ew-transition);
+  border: 2px solid transparent;
+}
+
+.ew-action-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ew-shadow-lg);
+  border-color: var(--ew-primary);
+  color: var(--ew-dark) !important;
+  text-decoration: none !important;
+}
+
+.ew-action-card__icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.ew-action-card__title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.ew-action-card__desc {
+  font-size: 0.8rem;
+  color: var(--ew-gray);
+}
+
+/* ---------- Collector Dashboard ---------- */
+.ew-collector-hero {
+  background: linear-gradient(135deg, #e0f7f5 0%, #d1fae5 50%, #ecfdf5 100%);
+  min-height: 100vh;
+  padding: 60px 0;
+}
+
+.ew-collector-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 40px auto 0;
+}
+
+.ew-collector-card {
+  background: white;
+  border-radius: var(--ew-radius-lg);
+  padding: 36px 24px;
+  text-align: center;
+  text-decoration: none !important;
+  color: var(--ew-dark) !important;
+  box-shadow: var(--ew-shadow);
+  transition: var(--ew-transition);
+  border: 2px solid transparent;
+}
+
+.ew-collector-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--ew-shadow-xl);
+  border-color: var(--ew-primary);
+  text-decoration: none !important;
+  color: var(--ew-dark) !important;
+}
+
+.ew-collector-card__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--ew-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+  margin: 0 auto 16px;
+  box-shadow: 0 4px 14px rgba(13,148,136,.25);
+}
+
+.ew-collector-card__title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.ew-collector-card__desc {
+  font-size: 0.85rem;
+  color: var(--ew-gray);
+  line-height: 1.5;
+}
+
+/* ---------- Product Grid (Shop) ---------- */
+.item-container {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+  gap: 28px !important;
+}
+
+.item-container .disp {
+  width: 100% !important;
+}
+
+/* ---------- Offer Section ---------- */
+.offer {
+  background: var(--ew-gradient) !important;
+  padding: 80px 0 !important;
+}
+
+.offer__content h4 {
+  color: white !important;
+  font-weight: 700 !important;
+  font-size: 1.6rem !important;
+  line-height: 1.4;
+}
+
+.offer__content p {
+  color: rgba(255,255,255,.8) !important;
+  font-style: italic;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  background: var(--ew-dark) !important;
+  padding: 40px 0 20px !important;
+}
+
+.footer-text {
+  color: rgba(255,255,255,.6) !important;
+  font-size: 0.85rem;
+}
+
+.ew-footer-brand {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.ew-footer-brand h4 {
+  color: white;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.ew-footer-brand p {
+  color: rgba(255,255,255,.5);
+  font-size: 0.9rem;
+}
+
+/* ---------- Alerts ---------- */
+.alert-info {
+  background: rgba(13,148,136,.08) !important;
+  border: 1px solid rgba(13,148,136,.2) !important;
+  color: var(--ew-primary-dark) !important;
+  border-radius: var(--ew-radius) !important;
+  font-weight: 500;
+  padding: 16px 20px !important;
+}
+
+/* ---------- Verification Badge ---------- */
+.ew-badge-pending {
+  background: var(--ew-danger) !important;
+  color: white !important;
+  padding: 6px 16px !important;
+  border-radius: 20px !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  animation: pulse-badge 2s infinite;
+}
+
+@keyframes pulse-badge {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,.4); }
+  50% { box-shadow: 0 0 0 8px rgba(239,68,68,0); }
+}
+
+/* ---------- Tables ---------- */
+table.table-auto th {
+  background: var(--ew-gray-light) !important;
+  font-weight: 600 !important;
+  color: var(--ew-dark) !important;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ew-gray-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ew-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ew-primary-dark);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .hero-banner__content h4 {
+    font-size: 1.8rem !important;
+  }
+  
+  .ew-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .ew-quick-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .ew-stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .ew-steps {
+    grid-template-columns: 1fr;
+  }
+  
+  .ew-quick-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Critical Blue → Teal Overrides ---------- */
+/* The original style.css uses #384aeb (blue) in many places. Override all of them. */
+
+/* Login box blue overlay → teal gradient */
+.login_box_area .login_box_img:before {
+  background: var(--ew-primary) !important;
+  opacity: 0.92 !important;
+  border-radius: var(--ew-radius-lg) !important;
+}
+
+/* Dropdown hover → teal instead of blue */
+.header_area .navbar .nav .nav-item.submenu ul .nav-item:hover .nav-link {
+  background: var(--ew-primary) !important;
+  color: #fff !important;
+}
+
+/* Nav active/hover color → teal */
+.header_area .navbar .nav .nav-item:hover .nav-link,
+.header_area .navbar .nav .nav-item.active .nav-link {
+  color: var(--ew-primary) !important;
+}
+
+/* Section intro underline → teal */
+.section-intro__style {
+  border-bottom-color: var(--ew-primary) !important;
+}
+
+/* Cart/overlay button backgrounds → teal */
+.card-product__imgOverlay li button {
+  background: var(--ew-primary) !important;
+}
+
+.card-product__imgOverlay li button:hover {
+  background: var(--ew-primary-dark) !important;
+}
+
+/* Product card hover title → teal */
+.card-product:hover .card-product__title a {
+  color: var(--ew-primary) !important;
+}
+
+/* Hero carousel overlay → teal */
+.hero-carousel__slideOverlay {
+  background: var(--ew-primary) !important;
+}
+
+/* Banner area gradient → teal (for login/register banner) */
+.blog-banner-area#category {
+  background: var(--ew-gradient) !important;
+}
+
+/* Login form button styling */
+.login_form .button-login,
+.login_form button[type="submit"] {
+  background: var(--ew-gradient) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 14px 32px !important;
+  font-weight: 600 !important;
+  width: 100%;
+  font-size: 1rem !important;
+  transition: var(--ew-transition) !important;
+}
+
+/* Register form button */
+.register_form_inner .btn-dark,
+.register_form_inner input[type="submit"] {
+  background: var(--ew-gradient) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 14px 32px !important;
+  font-weight: 600 !important;
+  color: white !important;
+  transition: var(--ew-transition) !important;
+}
+
+/* Register form controls */
+.register_form_inner .form-control {
+  border: 2px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  padding: 14px 18px !important;
+  font-size: 0.95rem;
+  transition: var(--ew-transition);
+  background: var(--ew-gray-light);
+}
+
+.register_form_inner .form-control:focus {
+  border-color: var(--ew-primary) !important;
+  box-shadow: 0 0 0 4px rgba(13,148,136,.1) !important;
+  background: white;
+}
+
+/* Navbar toggler → teal */
+.navbar-toggler span {
+  background: var(--ew-primary) !important;
+}
+
+/* Nav-shop circle badge → teal */
+.nav-shop li button .nav-shop__circle {
+  background: var(--ew-primary) !important;
+}
+
+/* Order box links → teal */
+.order_box .creat_account a {
+  color: var(--ew-primary) !important;
+}
+
+/* Login box button hover → dark instead of red */
+.login_box_area .login_box_img .button:hover {
+  background: var(--ew-dark) !important;
+  color: white !important;
+  border-color: var(--ew-dark) !important;
+}
+

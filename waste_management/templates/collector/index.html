@@ -9,27 +9,44 @@
 
 {% if messages %}
   {% for message in messages %}
-    <div class="alert alert-info">
+    <div class="alert alert-info" style="margin: 20px auto; max-width: 600px; text-align: center;">
       {{ message }}
     </div>
   {% endfor %}
 {% endif %}
-  <main class="site-main" style="background:lightblue ;height:100vh">
-    
-    <!--================ Hero banner start =================-->
-      <div class="container" >
-        <div class="row no-gutters align-items-center pt-60px">
-              <a class="button btn-outline-info" href="viewuser" >View Users</a>&nbsp;&nbsp;&nbsp; 
-              <a class="button" href="UserVerify">Verify Users</a> &nbsp;&nbsp;&nbsp; 
-              <a class="button " href="PickupRequest">View Requests</a> &nbsp;&nbsp;&nbsp; 
-              <a class="button " href="CollectionHistory">Collection History</a> &nbsp;&nbsp;&nbsp; 
+
+  <main class="site-main">
+    <section class="ew-collector-hero">
+      <div class="container">
+        <div style="text-align: center; padding-top: 20px;">
+          <h4 style="font-size: 2.2rem; font-weight: 800; color: var(--ew-dark);">Collector Dashboard</h4>
+          <p style="color: var(--ew-gray); font-size: 1.05rem; margin-top: 8px;">Manage users, verify accounts, and process e-waste pickups</p>
+        </div>
+
+        <div class="ew-collector-grid">
+          <a href="viewuser" class="ew-collector-card">
+            <div class="ew-collector-card__icon">👥</div>
+            <div class="ew-collector-card__title">View Users</div>
+            <div class="ew-collector-card__desc">Browse all registered users in your service area</div>
+          </a>
+          <a href="UserVerify/" class="ew-collector-card">
+            <div class="ew-collector-card__icon">✅</div>
+            <div class="ew-collector-card__title">Verify Users</div>
+            <div class="ew-collector-card__desc">Approve or reject pending user verification requests</div>
+          </a>
+          <a href="PickupRequest" class="ew-collector-card">
+            <div class="ew-collector-card__icon">🚛</div>
+            <div class="ew-collector-card__title">Pickup Requests</div>
+            <div class="ew-collector-card__desc">View and process pending e-waste pickup requests</div>
+          </a>
+          <a href="CollectionHistory" class="ew-collector-card">
+            <div class="ew-collector-card__icon">📊</div>
+            <div class="ew-collector-card__title">Collection History</div>
+            <div class="ew-collector-card__desc">View past collections and weight records</div>
+          </a>
         </div>
       </div>
-
-    <!--================ Hero banner start =================-->
-
-
-
+    </section>
   </main>
 
   {% endblock %}

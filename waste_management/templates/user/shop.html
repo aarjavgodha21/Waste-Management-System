@@ -5,21 +5,27 @@
     <div class="container">
 
       <div class="section-intro pb-60px">
-        <p>Popular Item in the market</p>
+        <p>Redeem your recycling points</p>
+        <h2>Reward <span class="section-intro__style">Shop</span></h2>
      </div>
      <div class="item-container">
         {% for i in prod %}
         <div class="disp">
           <div class="card text-center card-product">
             <div class="card-product__img">
-              <img class="img-fluid" src="media/{{ i.image }}" alt="{{i.image}}">
-              <ul class="card-product__imgOverlay" 
-                <li><a href="Product?id={{ i.id }}" class='btn btn-danger'></i>Purchase</a></li>
+              {% if i.image %}
+              <img class="img-fluid" src="/media/{{ i.image }}" alt="{{ i.name }}">
+              {% else %}
+              <div class="ew-product-placeholder">🔌</div>
+              {% endif %}
+              <ul class="card-product__imgOverlay">
+                <li><a href="Product?id={{ i.id }}" class='btn btn-danger'>Purchase</a></li>
               </ul>
             </div>
-            <div class="card-body" >
+            <div class="card-body">
+              <p>E-Waste Reward</p>
               <h4 class="card-product__title"><a href="Product?id={{ i.id }}">{{ i.name }}</a></h4>
-              <p><span class="material-symbols-outlined"></span>₹ {{i.rate}}</i></p>
+              <p>₹ {{i.rate}}</p>
             </div>
           </div>
         </div>

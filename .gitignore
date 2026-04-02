@@ -1,11 +1,7 @@
-
-venv/
-
-# Python cache
+.venv/
+*.sqlite3
 __pycache__/
-*.py[cod]
-
-# Django migration and cache folders
-waste_management/waste/migrations/__pycache__/
-waste_management/waste/__pycache__/
-waste_management/waste_management/__pycache__/
+*.pyc
+media/
+.env
+.DS_Store

@@ -24,7 +24,7 @@ urlpatterns = [
     path('UpdateStock',add_stock.as_view()),
     path('ManageProduct',manage_prod.as_view()),
     path('AddLocation',PinCodeInsertView.as_view()),
-    path('ViewLocations',PinCodeListView.as_view()),
+    path('ViewLocations',PinCodeListView.as_view(),name='ViewLocations'),
     path('remove_pincode', RemovePinCodeView.as_view(),name='remove_pincode'),
     path('CollectorList',CollectorList.as_view()),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
@@ -33,7 +33,6 @@ def urls():
     return urlpatterns,'admin','admin'
 
 
-if settings.DEBUG :
-    urlpatterns+=static(settings.STATIC_URL,document_root=settings.STATIC_URL)
-    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_URL)
-    
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
