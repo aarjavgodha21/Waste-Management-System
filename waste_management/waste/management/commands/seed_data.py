@@ -203,6 +203,7 @@ class Command(BaseCommand):
                 "rate": 599,
                 "point": 80,
                 "stock": 20,
+                "image": "images/wireless_mouse.png",
             },
             {
                 "name": "Recycled PCB Coaster Set",
@@ -210,6 +211,7 @@ class Command(BaseCommand):
                 "rate": 399,
                 "point": 50,
                 "stock": 30,
+                "image": "images/pcb_coaster.png",
             },
             {
                 "name": "Upcycled Circuit Board Clock",
@@ -217,6 +219,7 @@ class Command(BaseCommand):
                 "rate": 1299,
                 "point": 150,
                 "stock": 10,
+                "image": "images/circuit_clock.png",
             },
             {
                 "name": "Refurbished USB-C Hub",
@@ -224,6 +227,7 @@ class Command(BaseCommand):
                 "rate": 899,
                 "point": 120,
                 "stock": 15,
+                "image": "images/usb_hub.png",
             },
             {
                 "name": "E-Waste Art Desk Lamp",
@@ -231,6 +235,7 @@ class Command(BaseCommand):
                 "rate": 1499,
                 "point": 200,
                 "stock": 8,
+                "image": "images/desk_lamp.png",
             },
             {
                 "name": "Recycled Copper Wire Bracelet",
@@ -238,18 +243,25 @@ class Command(BaseCommand):
                 "rate": 299,
                 "point": 40,
                 "stock": 25,
+                "image": "images/wire_bracelet.png",
             },
         ]
         prods = []
         for d in prod_data:
             if products.objects.filter(name=d["name"]).exists():
-                prods.append(products.objects.get(name=d["name"]))
+                existing = products.objects.get(name=d["name"])
+                # Backfill image if missing
+                if not existing.image and d.get("image"):
+                    existing.image = d["image"]
+                    existing.save()
+                prods.append(existing)
                 continue
             p = products.objects.create(
                 name=d["name"],
                 desc=d["desc"],
                 rate=d["rate"],
                 point=d["point"],
+                image=d.get("image", ""),
                 status=1,
             )
             stock_his.objects.create(product=p, stock=d["stock"])

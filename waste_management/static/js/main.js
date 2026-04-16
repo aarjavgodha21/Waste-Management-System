@@ -143,6 +143,9 @@ $(function() {
 
 function showSideNotification(message) {
   var notificationElement = document.getElementById('side-notification');
+  if (!notificationElement) {
+    return;
+  }
   notificationElement.textContent = message;
 }
 
@@ -150,10 +153,12 @@ function showSideNotification(message) {
 
 const logo = document.querySelector('.logo');
 
-logo.addEventListener('mouseenter', () => {
-  logo.classList.add('expanded');
-});
+if (logo) {
+  logo.addEventListener('mouseenter', () => {
+    logo.classList.add('expanded');
+  });
 
-logo.addEventListener('mouseleave', () => { 
-  logo.classList.remove('expanded');
-});
+  logo.addEventListener('mouseleave', () => { 
+    logo.classList.remove('expanded');
+  });
+}

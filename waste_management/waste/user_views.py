@@ -38,16 +38,17 @@ class pickup_request(TemplateView):
             print(user)
             obj = waste_pickup()
             if  waste_pickup.objects.filter(userid=user.id,status='requested').exists():
-                raise Exception
+                messages.warning(request, 'You already have a pending pickup request. Please wait for the collector to process it.')
+                return redirect('/user')
             obj.userid=user
             obj.save()
             message = 'Requested for pick up'
-            messages.info(request, message)
+            messages.success(request, message)
             return redirect('/user')
         
         except Exception:
-            message = "Unable to process request"
-            messages.info(request, message)
+            message = "An error occurred while processing your request."
+            messages.error(request, message)
             return redirect('/user')
 
 

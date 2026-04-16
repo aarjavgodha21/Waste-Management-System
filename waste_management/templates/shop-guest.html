@@ -9,6 +9,7 @@
         <h2>Our <span class="section-intro__style">Shop</span></h2>
      </div>
      <div class="item-container">
+        {% if prod %}
         {% for i in prod %}
         <div class="disp">
           <div class="card text-center card-product">
@@ -30,6 +31,14 @@
           </div>
         </div>
         {% endfor %}
+        {% else %}
+        <div class="ew-empty-state ew-empty-state--wide">
+          <div class="ew-empty-state__icon">🔌</div>
+          <h3 class="ew-empty-state__title">No products available</h3>
+          <p class="ew-empty-state__text">Reward products will appear here after the admin publishes stock for the shop.</p>
+          <a class="button button--active ew-empty-state__cta" href="/login">Sign in for updates</a>
+        </div>
+        {% endif %}
       </div>
 
       

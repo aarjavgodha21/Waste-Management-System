@@ -8,7 +8,7 @@ urlpatterns = [
     path('PickupRequest',pickup_request.as_view()),
     path('ViewProfile',view_profile.as_view()),
     path('EditProfile',edit_profile_view.as_view()),
-    path('ReqestHistory',history.as_view()),
+    path('RequestHistory',history.as_view()),
     path('PointHistory',full_history.as_view()),
     path('Shop',shop.as_view()),
     path('Product',view_product.as_view()),

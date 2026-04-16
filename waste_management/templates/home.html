@@ -87,11 +87,10 @@
           <p>Redeem your recycling points</p>
           <h2>Reward <span class="section-intro__style">Products</span></h2>
         </div>
-        
+        {% if product %}
         <div class="owl-carousel owl-theme" id="bestSellerCarousel">
           {% for i in product %}
           <div class="card text-center card-product">
-            
             <div class="card-product__img">
               {% if i.image %}
               <img class="img-fluid-show" src="/media/{{i.image}}" alt="{{ i.name }}">
@@ -108,11 +107,17 @@
               <h4 class="card-product__title"><a href="/Product?id={{ i.id }}">{{i.name}}</a></h4>
               <p class="card-product__price">₹{{i.rate}}</p>
             </div>
-            
           </div>
           {% endfor %}
-
         </div>
+        {% else %}
+        <div class="ew-empty-state">
+          <div class="ew-empty-state__icon">♻️</div>
+          <h3 class="ew-empty-state__title">No reward products yet</h3>
+          <p class="ew-empty-state__text">The shop will appear here as soon as products are added in the admin panel.</p>
+          <a class="button button--active ew-empty-state__cta" href="/login">Login to continue</a>
+        </div>
+        {% endif %}
         
       </div>
     </section>
