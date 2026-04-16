@@ -2,6 +2,7 @@
 *.sqlite3
 __pycache__/
 *.pyc
-media/
+media/*
+!media/images/
 .env
 .DS_Store
