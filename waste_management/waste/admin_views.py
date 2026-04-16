@@ -81,7 +81,7 @@ class add_product(TemplateView):
             prod.rate=rate
             prod.point=point
             prod.image=image
-            prod.status='1'
+            prod.status=1
             prod.save()
             st =stock()
             st.product=prod

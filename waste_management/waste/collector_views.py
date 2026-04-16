@@ -22,7 +22,7 @@ class user_approve(View):
         user = User.objects.get(pk=id)
         user.last_name='1'
         user.save()
-        user = user_Registration.objects.filter(user__last_name='0',user__is_staff='0',user__is_active='1')
+        user = user_Registration.objects.filter(user__last_name='0',user__is_staff=False,user__is_active=True)
         return render(request,'collector/user_approvel.html',{'user':user,'message':" Account Approved"})
 
 class user_reject(View):
@@ -30,7 +30,7 @@ class user_reject(View):
         id = request.GET['id']
         user = User.objects.get(pk=id)
         user.last_name='1'
-        user.is_active='0'
+        user.is_active=False
         user.save()
         return render(request,'collector/user_approvel.html',{'message':"Account Removed"})
     
@@ -38,7 +38,7 @@ class user_verify(TemplateView):
     template_name = 'collector/user_approvel.html'
     def get_context_data(self, **kwargs):
         context = super(user_verify,self).get_context_data(**kwargs)
-        user = user_Registration.objects.filter(user__last_name='0',user__is_staff='0',user__is_active='1')
+        user = user_Registration.objects.filter(user__last_name='0',user__is_staff=False,user__is_active=True)
         context['user'] = user
         return context
     

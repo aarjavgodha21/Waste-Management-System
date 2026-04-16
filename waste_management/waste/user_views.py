@@ -134,7 +134,7 @@ class shop(TemplateView):
     template_name='user/Shop.html'
     def get_context_data(self, **kwargs):
         context=super(shop,self).get_context_data(**kwargs)
-        prod=products.objects.filter(status='1')
+        prod=products.objects.filter(status=1)
         context['prod']=prod
         return context
     
