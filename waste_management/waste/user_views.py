@@ -153,6 +153,7 @@ class view_product(TemplateView):
         context['user']=user
         
         context['pd']=pd
+        context['base_template'] = 'user/base.html'
         return context
     
 class checkout(TemplateView):
