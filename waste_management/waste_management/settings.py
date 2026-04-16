@@ -36,7 +36,7 @@ SECRET_KEY = 'django-insecure-6in(xs-l&9+y-7x11!m33kllp%m_r@b0yr3iqrmrv=z%-^t2a@
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = True
 
 ALLOWED_HOSTS = ['*'] # In production, restrict to your render URL and custom domains.
 
