@@ -35,7 +35,7 @@
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
               <li class="nav-item active"><a class="nav-link" href="/user">Home</a></li>
               <li class="nav-item"><a href="Shop" class="nav-link">Shop</a></li>
-              {% if request.user.last_name == '1' %}
+              {% if request.user.is_authenticated and request.user.last_name == '1' %}
               <li class="nav-item submenu dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false" href="#">E-Waste</a>
@@ -65,10 +65,10 @@
                   <li class="nav-item"><a class="nav-link" href="#" onclick="document.getElementById('logout-form-user').submit(); return false;">Log Out</a></li>
                 </ul>
               </li>
-              {% if request.user.last_name == '0' %}
+              {% if request.user.is_authenticated and request.user.last_name == '0' %}
               <li class="nav-item"><span class="nav-link ew-badge-pending">⏳ Verification Pending</span></li>
               {% endif %}
-              {% if request.user.last_name == '4' %}
+              {% if request.user.is_authenticated and request.user.last_name == '4' %}
               <li class="nav-item"><a class="nav-link btn-ew-outline" style="padding: 6px 20px !important;" href="JoinUs">Join as Member</a></li>
               {% endif %}
             </ul>
